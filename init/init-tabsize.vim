@@ -19,6 +19,9 @@ set sw=4
 " 设置 TAB 宽度
 set ts=4
 
+" 空格替换 TAB
+set expandtab
+
 " 禁止展开 tab (noexpandtab)
 set noet
 

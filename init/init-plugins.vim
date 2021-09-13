@@ -169,7 +169,18 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	" 提供 gist 接口
 	Plug 'lambdalisue/vim-gista', { 'on': 'Gista' }
+
+	Plug 'skywind3000/vim-auto-popmenu'
 	
+	" 设定需要生效的文件类型，如果是 "*" 的话，代表所有类型
+	let g:apc_enable_ft = {'*':1}
+	" 设定从字典文件以及当前打开的文件里收集补全单词，详情看 ':help cpt'
+	set cpt=.,k,w,b
+	" 不要自动选中第一个选项。
+	set completeopt=menu,menuone,noselect
+	" 禁止在下方显示一些啰嗦的提示
+	set shortmess+=c
+
 	" ALT_+/- 用于按分隔符扩大缩小 v 选区
 	map <m-=> <Plug>(expand_region_expand)
 	map <m--> <Plug>(expand_region_shrink)
@@ -217,7 +228,7 @@ if index(g:bundle_group, 'tags') >= 0
 	let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 	" 使用 universal-ctags 的话需要下面这行，请反注释
-	" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+	let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
 	" 禁止 gutentags 自动链接 gtags 数据库
 	let g:gutentags_auto_add_gtags_cscope = 0
@@ -522,90 +533,3 @@ endif
 " 结束插件安装
 "----------------------------------------------------------------------
 call plug#end()
-
-
-
-"----------------------------------------------------------------------
-" YouCompleteMe 默认设置：YCM 需要你另外手动编译安装
-"----------------------------------------------------------------------
-
-" 禁用预览功能：扰乱视听
-let g:ycm_add_preview_to_completeopt = 0
-
-" 禁用诊断功能：我们用前面更好用的 ALE 代替
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
-set completeopt=menu,menuone,noselect
-
-" noremap <c-z> <NOP>
-
-" 两个字符自动触发语义补全
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-
-
-"----------------------------------------------------------------------
-" Ycm 白名单（非名单内文件不启用 YCM），避免打开个 1MB 的 txt 分析半天
-"----------------------------------------------------------------------
-let g:ycm_filetype_whitelist = { 
-			\ "c":1,
-			\ "cpp":1, 
-			\ "objc":1,
-			\ "objcpp":1,
-			\ "python":1,
-			\ "java":1,
-			\ "javascript":1,
-			\ "coffee":1,
-			\ "vim":1, 
-			\ "go":1,
-			\ "cs":1,
-			\ "lua":1,
-			\ "perl":1,
-			\ "perl6":1,
-			\ "php":1,
-			\ "ruby":1,
-			\ "rust":1,
-			\ "erlang":1,
-			\ "asm":1,
-			\ "nasm":1,
-			\ "masm":1,
-			\ "tasm":1,
-			\ "asm68k":1,
-			\ "asmh8300":1,
-			\ "asciidoc":1,
-			\ "basic":1,
-			\ "vb":1,
-			\ "make":1,
-			\ "cmake":1,
-			\ "html":1,
-			\ "css":1,
-			\ "less":1,
-			\ "json":1,
-			\ "cson":1,
-			\ "typedscript":1,
-			\ "haskell":1,
-			\ "lhaskell":1,
-			\ "lisp":1,
-			\ "scheme":1,
-			\ "sdl":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ "bash":1,
-			\ "man":1,
-			\ "markdown":1,
-			\ "matlab":1,
-			\ "maxima":1,
-			\ "dosini":1,
-			\ "conf":1,
-			\ "config":1,
-			\ "zimbu":1,
-			\ "ps1":1,
-			\ }
-
-
