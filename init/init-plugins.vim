@@ -137,6 +137,9 @@ if index(g:bundle_group, 'basic') >= 0
 	let g:signify_sign_change            = '~'
 	let g:signify_sign_changedelete      = g:signify_sign_change
 
+    " 设置signify更新时间为500ms
+    set updatetime=500
+
 	" git 仓库使用 histogram 算法进行 diff
 	let g:signify_vcs_cmds = {
 			\ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
